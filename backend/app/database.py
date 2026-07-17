@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker,Session
 
 from dotenv import load_dotenv
 import os
@@ -24,3 +24,10 @@ SessionLocal = sessionmaker(
     autocommit=False,
     bind=engine
 )
+
+def get_db():
+    db: Session = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
