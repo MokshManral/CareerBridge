@@ -113,3 +113,10 @@ def get_me(
     current_user: User = Depends(get_current_user)
 ):
     return current_user
+
+
+@router.get("/profile")
+def profile(
+    current_user: User = Depends(get_current_user)
+):
+    return current_user
